@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        android:title="@string/SingleWord_General"
+        android:key="GeneralSettingsID"
+        >
+
+        <Preference
+            android:key="CalificaID"
+            android:icon="@drawable/ic_thumb_up"
+            android:title="@string/configuracion_CalificaLaApp"
+            android:summary="@string/configuracion_CalificaLaApp_Descripcion"
+            ></Preference>
+
+        <Preference
+            android:key="ErroresID"
+            android:icon="@drawable/ic_feedback"
+            android:title="@string/configuracion_EnviarErrores"
+            android:summary="@string/configuracion_EnviarErrores_Descripcion"
+            ></Preference>
+
+
+        <Preference
+            android:key="IdiomaID"
+            android:title="@string/configuracion_Idioma"
+            android:icon="@drawable/ic_language"
+            android:summary="@string/configuracion_Idioma_Descripcion"
+            ></Preference>
+
+
+        <Preference
+            android:key="BorrarListaPedidosID"
+            android:title="@string/configuracion_BorrarPedidos"
+            android:icon="@drawable/ic_clear_all"
+            android:summary="@string/configuracion_BorrarPedidos_Descripcion"
+            ></Preference>
+
+
+
+
+        <Preference
+            android:key="VersionID"
+            android:title="@string/SingleWord_Version"
+            android:summary="1.0.0"
+            android:icon="@drawable/ic_code"
+           ></Preference>
+
+        <Preference
+            android:key="AcercaDeID"
+            android:title="@string/configuracion_AcercaDe"
+            android:icon="@drawable/ic_help_outline"
+            ></Preference>
+
+        <Preference
+            android:key="PoliticasID"
+            android:title="@string/configuracion_PoliticaDePrivacidad"
+            android:icon="@drawable/ic_policy"
+            ></Preference>
+
+    </PreferenceCategory>
+
+    <!--
+    <PreferenceCategory android:title="Diseño">
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="ModoOscuroID"
+            android:title="Modo Oscuro"
+            android:icon="@drawable/ic_settings_brightness"
+            android:summary="Activa o desactiva el modo oscuro para obtener una visibilidad de la aplicación a tu gusto"/>
+    </PreferenceCategory>
+-->
+
+</PreferenceScreen>

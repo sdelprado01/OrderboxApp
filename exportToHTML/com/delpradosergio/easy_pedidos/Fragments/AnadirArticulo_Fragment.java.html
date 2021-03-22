@@ -1,0 +1,272 @@
+<html>
+<head>
+<title>AnadirArticulo_Fragment.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #808080;}
+.s3 { color: #6a8759;}
+.s4 { color: #6897bb;}
+.s5 { color: #629755; font-style: italic;}
+.s6 { color: #629755; font-weight: bold; font-style: italic;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+AnadirArticulo_Fragment.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com.delpradosergio.orderbox.Fragments</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">android.content.Context</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.graphics.Canvas</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.os.Bundle</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">androidx.annotation.NonNull</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">androidx.core.content.ContextCompat</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">androidx.fragment.app.Fragment</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">androidx.lifecycle.LiveData</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">androidx.lifecycle.ViewModelProvider</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">androidx.navigation.fragment.NavHostFragment</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">androidx.recyclerview.widget.ItemTouchHelper</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">androidx.recyclerview.widget.LinearLayoutManager</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">androidx.recyclerview.widget.RecyclerView</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">android.view.LayoutInflater</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.view.View</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.view.ViewGroup</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.view.inputmethod.InputMethodManager</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.widget.AutoCompleteTextView</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.widget.Button</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.widget.ImageButton</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.widget.Spinner</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.widget.TextView</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.widget.Toast</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">com.delpradosergio.orderbox.Database.ViewModelCarnitronic</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">com.delpradosergio.orderbox.Entidades.Articulo</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">com.delpradosergio.orderbox.Interfaces.AdaptadorListaArticulos</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">com.delpradosergio.orderbox.R</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">com.google.android.material.snackbar.BaseTransientBottomBar</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">com.google.android.material.snackbar.Snackbar</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">java.util.ArrayList</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">java.util.List</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator</span><span class="s0">;</span>
+
+
+<span class="s0">public class </span><span class="s1">AnadirArticulo_Fragment </span><span class="s0">extends </span><span class="s1">Fragment </span><span class="s0">implements </span><span class="s1">AdaptadorListaArticulos.EditableArticulos {</span>
+
+   <span class="s2">// private String [] prueba = new String[] {&quot;Lunes&quot;, &quot;Martes&quot;, &quot;Miercoles&quot;};</span>
+    <span class="s0">private </span><span class="s1">Button completarArticulos</span><span class="s0">, </span><span class="s1">añadirArticulo</span><span class="s0">;</span>
+    <span class="s0">private </span><span class="s1">Spinner tipoCantidadSpinner</span><span class="s0">;</span>
+    <span class="s0">private </span><span class="s1">Articulo miArticulo</span><span class="s0">;</span>
+    <span class="s0">private </span><span class="s1">AutoCompleteTextView nombreArticulo</span><span class="s0">;</span>
+    <span class="s0">private </span><span class="s1">TextView cantidad</span><span class="s0">, </span><span class="s1">detalles</span><span class="s0">;</span>
+    <span class="s0">private </span><span class="s1">ImageButton botonRetroceder</span><span class="s0">;</span>
+    <span class="s0">private </span><span class="s1">RecyclerView recyclerViewArticulos</span><span class="s0">;</span>
+    <span class="s0">private </span><span class="s1">AdaptadorListaArticulos adapter</span><span class="s0">;</span>
+    <span class="s0">private </span><span class="s1">LiveData&lt;List&lt;Articulo&gt;&gt; liveDataListaArticulos</span><span class="s0">;</span>
+
+    <span class="s0">private int </span><span class="s1">posArticuloEditado</span><span class="s0">;</span>
+
+    <span class="s1">ViewModelCarnitronic viewModel</span><span class="s0">;</span>
+
+    <span class="s0">public </span><span class="s1">AnadirArticulo_Fragment() {}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">public void </span><span class="s1">onCreate(Bundle savedInstanceState) {</span>
+        <span class="s0">super</span><span class="s1">.onCreate(savedInstanceState)</span><span class="s0">;</span>
+
+        <span class="s1">posArticuloEditado = (savedInstanceState!=</span><span class="s0">null</span><span class="s1">) ? savedInstanceState.getInt(</span><span class="s3">&quot;posArticuloEditado&quot;</span><span class="s0">,</span><span class="s1">-</span><span class="s4">1</span><span class="s1">) : -</span><span class="s4">1</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">public void </span><span class="s1">onSaveInstanceState(@NonNull Bundle outState) {</span>
+        <span class="s0">super</span><span class="s1">.onSaveInstanceState(outState)</span><span class="s0">;</span>
+        <span class="s1">outState.putInt(</span><span class="s3">&quot;posArticuloEditado&quot;</span><span class="s0">,</span><span class="s1">posArticuloEditado)</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">public </span><span class="s1">View onCreateView(LayoutInflater inflater</span><span class="s0">, </span><span class="s1">ViewGroup container</span><span class="s0">, </span><span class="s1">Bundle savedInstanceState) {</span>
+
+        <span class="s1">View vista = inflater.inflate(R.layout.fragment_anadir_articulo</span><span class="s0">, </span><span class="s1">container</span><span class="s0">, false</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">viewModel = </span><span class="s0">new </span><span class="s1">ViewModelProvider(requireActivity()).get(ViewModelCarnitronic.</span><span class="s0">class</span><span class="s1">)</span><span class="s0">;</span>
+
+        <span class="s1">nombreArticulo = vista.findViewById(R.id.editTextNombreArticulo)</span><span class="s0">;</span>
+        <span class="s2">//nombreArticulo.setAdapter(new ArrayAdapter&lt;&gt;(requireActivity(), android.R.layout.simple_list_item_1, prueba));</span>
+        <span class="s1">cantidad = vista.findViewById(R.id.editTextCantidad)</span><span class="s0">;</span>
+        <span class="s1">detalles = vista.findViewById(R.id.editTextDetalles)</span><span class="s0">;</span>
+        <span class="s1">tipoCantidadSpinner = vista.findViewById(R.id.spinner)</span><span class="s0">;</span>
+
+        <span class="s1">añadirArticulo = vista.findViewById(R.id.buttonAñadirArticuloEnAddArticulos)</span><span class="s0">;</span>
+        <span class="s1">añadirArticulo.setOnClickListener(v-&gt;{</span>
+
+            <span class="s0">if </span><span class="s1">(comprobarCampos(nombreArticulo</span><span class="s0">, </span><span class="s1">cantidad)==</span><span class="s0">true</span><span class="s1">) {</span>
+                <span class="s1">detalles.clearFocus()</span><span class="s0">;</span>
+                <span class="s0">if </span><span class="s1">(detalles != </span><span class="s0">null</span><span class="s1">) {</span>
+                    <span class="s1">InputMethodManager imm = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE)</span><span class="s0">;</span>
+                    <span class="s0">if</span><span class="s1">(imm != </span><span class="s0">null</span><span class="s1">) {</span>
+                        <span class="s1">imm.hideSoftInputFromWindow(detalles.getWindowToken()</span><span class="s0">, </span><span class="s4">0</span><span class="s1">)</span><span class="s0">;</span>
+                    <span class="s1">}</span>
+                <span class="s1">}</span>
+
+                <span class="s1">miArticulo = </span><span class="s0">new </span><span class="s1">Articulo(nombreArticulo.getText().toString()</span><span class="s0">, </span><span class="s1">cantidad.getText().toString()</span><span class="s0">,</span>
+                        <span class="s1">tipoCantidadSpinner.getSelectedItem().toString()</span><span class="s0">, </span><span class="s1">detalles.getText().toString().trim())</span><span class="s0">;</span>
+                <span class="s0">if</span><span class="s1">(posArticuloEditado==-</span><span class="s4">1</span><span class="s1">) {</span>
+                    <span class="s1">viewModel.anadirArticuloSinConfirmar(miArticulo)</span><span class="s0">;</span>
+                <span class="s1">}</span>
+                <span class="s0">else </span><span class="s1">{ </span><span class="s2">//estamos editando un articulo de la lista</span>
+                    <span class="s1">viewModel.editarArticuloSinConfirmar(miArticulo</span><span class="s0">,</span><span class="s1">posArticuloEditado)</span><span class="s0">;</span>
+                <span class="s1">}</span>
+                <span class="s1">limpiarCampos(nombreArticulo</span><span class="s0">, </span><span class="s1">cantidad</span><span class="s0">, </span><span class="s1">detalles)</span><span class="s0">;</span>
+            <span class="s1">} </span><span class="s0">else </span><span class="s1">{</span>
+                <span class="s1">Toast.makeText(getActivity()</span><span class="s0">, </span><span class="s3">&quot;Rellena todos los campos antes de añadir el artículo&quot;</span><span class="s0">, </span><span class="s1">Toast.LENGTH_LONG).show()</span><span class="s0">;</span>
+            <span class="s1">}</span>
+
+        <span class="s1">})</span><span class="s0">;</span>
+
+        <span class="s1">completarArticulos = vista.findViewById(R.id.buttonCompletarArticulo)</span><span class="s0">;</span>
+        <span class="s1">completarArticulos.setOnClickListener(v -&gt; NavHostFragment.findNavController(</span><span class="s0">this</span><span class="s1">).popBackStack())</span><span class="s0">;</span>
+
+        <span class="s1">recyclerViewArticulos = vista.findViewById(R.id.recylcerViewDescripcionArticulosAddArticulos)</span><span class="s0">;</span>
+        <span class="s1">recyclerViewArticulos.setLayoutManager(</span><span class="s0">new </span><span class="s1">LinearLayoutManager(getActivity()))</span><span class="s0">;</span>
+        <span class="s1">liveDataListaArticulos = viewModel.getArticulosSinConfirmar()</span><span class="s0">;</span>
+        <span class="s1">liveDataListaArticulos.observe(getViewLifecycleOwner()</span><span class="s0">, </span><span class="s1">listaArticulos -&gt; {</span>
+            <span class="s1">adapter.setListaArticulos(listaArticulos)</span><span class="s0">;</span>
+            <span class="s1">adapter.notifyDataSetChanged()</span><span class="s0">;</span>
+        <span class="s1">})</span><span class="s0">;</span>
+        <span class="s1">adapter = </span><span class="s0">new </span><span class="s1">AdaptadorListaArticulos(</span><span class="s0">new </span><span class="s1">ArrayList&lt;&gt;()</span><span class="s0">, </span><span class="s1">viewModel</span><span class="s0">, this</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">recyclerViewArticulos.setAdapter(adapter)</span><span class="s0">;</span>
+
+        <span class="s2">//2. Crear un itemtouch helper y pasarle como parametro el simpleCallback que hemos creado</span>
+        <span class="s1">ItemTouchHelper itemTouchHelper = </span><span class="s0">new </span><span class="s1">ItemTouchHelper(simpleCallback)</span><span class="s0">;</span>
+        <span class="s2">//3. enlazar el itemtouchhelper con el recycler view</span>
+        <span class="s1">itemTouchHelper.attachToRecyclerView(recyclerViewArticulos)</span><span class="s0">;</span>
+
+        <span class="s1">botonRetroceder = vista.findViewById(R.id.imageButtonRetrocederAddArticulos)</span><span class="s0">;</span>
+        <span class="s1">botonRetroceder.setOnClickListener(v-&gt;NavHostFragment.findNavController(</span><span class="s0">this</span><span class="s1">).popBackStack())</span><span class="s0">;</span>
+
+        <span class="s0">int </span><span class="s1">posicion = AnadirArticulo_FragmentArgs.fromBundle(getArguments()).getPosicion()</span><span class="s0">;</span>
+        <span class="s0">if</span><span class="s1">(posicion != -</span><span class="s4">1</span><span class="s1">) {</span>
+            <span class="s1">editar(posicion)</span><span class="s0">;</span>
+        <span class="s1">}</span>
+
+        <span class="s0">return </span><span class="s1">vista</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s2">//Implementar on swipe</span>
+    <span class="s2">//1. Crear el simple callback habilitado para deslizar derecha e izquierda</span>
+    <span class="s1">ItemTouchHelper.SimpleCallback simpleCallback = </span><span class="s0">new </span><span class="s1">ItemTouchHelper.SimpleCallback(</span><span class="s4">0</span><span class="s0">, </span><span class="s1">ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {</span>
+        <span class="s1">@Override</span>
+        <span class="s0">public boolean </span><span class="s1">onMove(@NonNull RecyclerView recyclerView</span><span class="s0">, </span><span class="s1">@NonNull RecyclerView.ViewHolder viewHolder</span><span class="s0">, </span><span class="s1">@NonNull RecyclerView.ViewHolder target) {</span>
+            <span class="s0">return false;</span>
+        <span class="s1">}</span>
+
+        <span class="s1">@Override</span>
+        <span class="s0">public void </span><span class="s1">onSwiped(@NonNull RecyclerView.ViewHolder viewHolder</span><span class="s0">, int </span><span class="s1">direction) {</span>
+
+            <span class="s0">int </span><span class="s1">posicion = viewHolder.getAdapterPosition()</span><span class="s0">;</span>
+            <span class="s1">Articulo articuloModificado = adapter.getListaArticulos().get(posicion)</span><span class="s0">;</span>
+
+            <span class="s2">//4. Creamos las acciones para cada una de las posibles acciones de swipe</span>
+            <span class="s0">switch </span><span class="s1">(direction){</span>
+                <span class="s2">//Derecha editar</span>
+                <span class="s0">case </span><span class="s1">ItemTouchHelper.RIGHT:</span>
+                    <span class="s1">editar(posicion)</span><span class="s0">;</span>
+                    <span class="s0">break;</span>
+
+                <span class="s2">//Izquiera eliminar</span>
+                <span class="s0">case </span><span class="s1">ItemTouchHelper.LEFT:</span>
+                    <span class="s1">adapter.getListaArticulos().remove(posicion)</span><span class="s0">;</span>
+                    <span class="s1">adapter.notifyItemRemoved(posicion)</span><span class="s0">;</span>
+                    <span class="s1">Snackbar snackbar = Snackbar.make(recyclerViewArticulos</span><span class="s0">, </span><span class="s3">&quot;Has borrado el articulo&quot;</span><span class="s0">, </span><span class="s1">Snackbar.LENGTH_LONG)</span><span class="s0">;</span>
+                    <span class="s1">BaseTransientBottomBar.BaseCallback&lt;Snackbar&gt; callbackSnackbar = </span><span class="s0">new </span><span class="s1">BaseTransientBottomBar.BaseCallback&lt;Snackbar&gt;() {</span>
+                        <span class="s1">@Override</span>
+                        <span class="s0">public void </span><span class="s1">onDismissed(Snackbar transientBottomBar</span><span class="s0">, int </span><span class="s1">event) {</span>
+                            <span class="s0">super</span><span class="s1">.onDismissed(transientBottomBar</span><span class="s0">, </span><span class="s1">event)</span><span class="s0">;</span>
+                            <span class="s1">viewModel.borrarArticulosinConfirmar(articuloModificado)</span><span class="s0">;</span>
+                        <span class="s1">}</span>
+                    <span class="s1">}</span><span class="s0">;</span>
+                    <span class="s1">snackbar.addCallback(callbackSnackbar)</span><span class="s0">;</span>
+                    <span class="s1">snackbar.setAction(</span><span class="s3">&quot;Deshacer&quot;</span><span class="s0">, </span><span class="s1">v -&gt; {</span>
+                        <span class="s1">adapter.getListaArticulos().add(posicion</span><span class="s0">, </span><span class="s1">articuloModificado)</span><span class="s0">;</span>
+                        <span class="s1">adapter.notifyItemInserted(posicion)</span><span class="s0">;</span>
+                        <span class="s1">snackbar.removeCallback(callbackSnackbar)</span><span class="s0">;</span>
+                    <span class="s1">}).show()</span><span class="s0">;</span>
+                    <span class="s0">break;</span>
+            <span class="s1">}</span>
+        <span class="s1">}</span>
+
+        <span class="s1">@Override</span>
+        <span class="s0">public void </span><span class="s1">onChildDraw(@NonNull Canvas c</span><span class="s0">, </span><span class="s1">@NonNull RecyclerView recyclerView</span><span class="s0">, </span><span class="s1">@NonNull RecyclerView.ViewHolder viewHolder</span><span class="s0">,</span>
+                                <span class="s0">float </span><span class="s1">dX</span><span class="s0">, float </span><span class="s1">dY</span><span class="s0">, int </span><span class="s1">actionState</span><span class="s0">, boolean </span><span class="s1">isCurrentlyActive) {</span>
+            <span class="s0">new </span><span class="s1">RecyclerViewSwipeDecorator.Builder(getActivity()</span><span class="s0">, </span><span class="s1">c</span><span class="s0">, </span><span class="s1">recyclerView</span><span class="s0">, </span><span class="s1">viewHolder</span><span class="s0">, </span><span class="s1">dX</span><span class="s0">, </span><span class="s1">dY</span><span class="s0">, </span><span class="s1">actionState</span><span class="s0">, </span><span class="s1">isCurrentlyActive)</span>
+                    <span class="s1">.addSwipeLeftActionIcon(R.drawable.ic_delete)</span>
+                    <span class="s1">.addSwipeRightActionIcon(R.drawable.ic_create)</span>
+                    <span class="s1">.addSwipeRightLabel(</span><span class="s3">&quot;Editar artículo&quot;</span><span class="s1">)</span>
+                    <span class="s1">.addSwipeLeftLabel(</span><span class="s3">&quot;Eliminar artículo&quot;</span><span class="s1">)</span>
+                    <span class="s2">/* 
+                    .setSwipeLeftLabelColor(getColor(R.color.colorWhite)) 
+                    .addSwipeLeftBackgroundColor(getColor(R.color.colorRedDark)) 
+                    .addSwipeRightBackgroundColor(getColor(R.color.lightGreen)) 
+ 
+                     */</span>
+                    <span class="s1">.create()</span>
+                    <span class="s1">.decorate()</span><span class="s0">;</span>
+
+            <span class="s0">super</span><span class="s1">.onChildDraw(c</span><span class="s0">, </span><span class="s1">recyclerView</span><span class="s0">, </span><span class="s1">viewHolder</span><span class="s0">, </span><span class="s1">dX</span><span class="s0">, </span><span class="s1">dY</span><span class="s0">, </span><span class="s1">actionState</span><span class="s0">, </span><span class="s1">isCurrentlyActive)</span><span class="s0">;</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span><span class="s0">;</span>
+     <span class="s2">//Coger el color en si y no el ID</span>
+    <span class="s0">private int </span><span class="s1">getColor(</span><span class="s0">int </span><span class="s1">colorID) {</span>
+        <span class="s0">return </span><span class="s1">ContextCompat.getColor(requireContext()</span><span class="s0">,</span><span class="s1">colorID)</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s5">/**</span>
+     <span class="s5">* Comprueba que los campos del formulario estén rellenados y si lo estan permite añadir el nuevo artículo</span>
+     <span class="s5">* </span><span class="s6">@param </span><span class="s5">nombreArticulo EditText del nombre del artículo</span>
+     <span class="s5">* </span><span class="s6">@param </span><span class="s5">cantidad EditText con la cantidad deseada</span>
+     <span class="s5">* </span><span class="s6">@return </span><span class="s5">True si los campos están rellenos y false si no</span>
+     <span class="s5">*/</span>
+    <span class="s0">public boolean </span><span class="s1">comprobarCampos(TextView nombreArticulo</span><span class="s0">, </span><span class="s1">TextView cantidad){</span>
+        <span class="s0">if</span><span class="s1">(nombreArticulo.getText().toString().isEmpty() || cantidad.getText().toString().isEmpty()){</span>
+            <span class="s0">return false;</span>
+        <span class="s1">} </span><span class="s0">else </span><span class="s1">{</span>
+            <span class="s0">return true;</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">limpiarCampos(TextView ... textViews){</span>
+        <span class="s0">for</span><span class="s1">(TextView textView : textViews) {</span>
+            <span class="s1">textView.setText(</span><span class="s3">&quot;&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">}</span>
+        <span class="s1">posArticuloEditado = -</span><span class="s4">1</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+
+    <span class="s1">@Override</span>
+    <span class="s0">public void </span><span class="s1">editar(</span><span class="s0">int </span><span class="s1">posicion) {</span>
+        <span class="s1">Articulo articuloModificado = viewModel.getArticulosSinConfirmar().getValue().get(posicion)</span><span class="s0">;</span>
+        <span class="s1">posArticuloEditado = posicion</span><span class="s0">;</span>
+        <span class="s1">nombreArticulo.setText(articuloModificado.getNombreArticulo())</span><span class="s0">;</span>
+        <span class="s1">cantidad.setText(articuloModificado.getCantidad())</span><span class="s0">;</span>
+        <span class="s1">String[] opcionesSpinner = getResources().getStringArray(R.array.tipo_cantidad_articulo)</span><span class="s0">;</span>
+        <span class="s0">int </span><span class="s1">tipoCantidad = </span><span class="s4">0</span><span class="s0">;</span>
+        <span class="s0">for </span><span class="s1">(</span><span class="s0">int </span><span class="s1">i = </span><span class="s4">0</span><span class="s0">; </span><span class="s1">i &lt; opcionesSpinner.length</span><span class="s0">; </span><span class="s1">i++) {</span>
+            <span class="s0">if</span><span class="s1">(opcionesSpinner[i].equals(articuloModificado.getTipoCantidad())) {</span>
+                <span class="s1">tipoCantidad = i</span><span class="s0">;</span>
+            <span class="s1">}</span>
+        <span class="s1">}</span>
+        <span class="s1">tipoCantidadSpinner.setSelection(tipoCantidad</span><span class="s0">,true</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">detalles.setText(articuloModificado.getDescripcion())</span><span class="s0">;</span>
+
+        <span class="s1">adapter.notifyItemChanged(posicion)</span><span class="s0">;</span>
+    <span class="s1">}</span>
+<span class="s1">}</span>
+</pre>
+</body>
+</html>

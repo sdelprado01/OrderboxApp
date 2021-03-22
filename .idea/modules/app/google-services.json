@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "152782771544",
+    "project_id": "orderbox-500ad",
+    "storage_bucket": "orderbox-500ad.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:152782771544:android:a240b192d81cce29e2012d",
+        "android_client_info": {
+          "package_name": "com.delpradosergio.orderbox"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "152782771544-33oujeirngipedfasbtimmp83eds1ett.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEkYmFh8G-Z1Pk2CUjv_6RuLkccKyBPdk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "152782771544-33oujeirngipedfasbtimmp83eds1ett.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

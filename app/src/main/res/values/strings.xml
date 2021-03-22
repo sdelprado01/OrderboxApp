@@ -1,0 +1,62 @@
+<resources>
+    <string name="app_name" translatable="false">Orderbox</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="SingleWord_addPedido">Add order</string>
+
+    <string-array name="tipo_cantidad_articulo">
+        <item>Grs</item>
+        <item>Kgs</item>
+        <item>Uds</item>
+    </string-array>
+
+    <string name="NumeroPedido">Order number %d</string>
+    <string name="Message_ConfirmarAnadirPedido">An order will be added in the name of &lt;b>%s&lt;/b> with a delivery date for &lt;b>%s&lt;/b>.&lt;p>Are you sure?&lt;/p></string>
+    <string name="anadirPedido_AbrirListaArticulos"><u>Article List</u></string>
+    <string name="tfno_subrayado" translatable="false"><u>%d</u></string>
+    <string name="main_Desc_AnadirPedido">Add a new order to the list</string>
+    <string name="main_VerPedidos">Check Orders</string>
+    <string name="main_Desc_VerPedidos">Check your order list and manage your orders</string>
+    <string name="anadirPedido_Titulo">Add order</string>
+    <string name="anadirPedido_NombreCliente">Client name</string>
+    <string name="anadirPedido_NumeroDeTelefono">Phone number</string>
+    <string name="anadirPedido_FechaDeRecogida">Pickup date</string>
+    <string name="anadirPedido_CompletarPedido">Complete order</string>
+    <string name="anadirArticulo_Titulo">Add articles</string>
+    <string name="anadirArticulo_NombreArticulo">Article name</string>
+    <string name="SingleWord_Quantity">Quantity</string>
+    <string name="SingleWord_Details">Details</string>
+    <string name="SingleWord_Add">Add</string>
+    <string name="anadirArticulo_CompletarLista">Complete list</string>
+    <string name="verPedidos_Titulo">Orders</string>
+    <string name="SingleWord_Buscar">Search...</string>
+    <string name="SingleWord_Entregado">Delivered</string>
+    <string name="SingleWord_Preparado">Prepared</string>
+    <string name="SingleWord_BorrarPedido">Delete order</string>
+    <string name="SingleWord_Descripcion">Description</string>
+    <string name="SingleWord_NoEntregado">Not delivered</string>
+    <string name="SingleWord_NoPreparado">Not prepared</string>
+    <string name="SingleWord_Aceptar">Accept</string>
+    <string name="SingleWord_Cancelar">Cancel</string>
+    <string name="SingleWord_Atencion">Warning</string>
+    <string name="Message_ArticuloBorrado">You have deleted an article</string>
+    <string name="Message_EstasSeguro">Are you sure?</string>
+    <string name="SingleWord_Delete">Delete</string>
+    <string name="Dialog_BorrarPedido">You will delete the selected order</string>
+    <string name="SingleWord_Configuracion">Settings</string>
+    <string name="Dialog_BorrarTodaListaPedidos">You are going to delete all the orders from the order list</string>
+    <string name="anadirPedido_EditarPedido">Edit order</string>
+    <string name="SingleWord_General">General</string>
+    <string name="configuracion_CalificaLaApp">Rate the app</string>
+    <string name="configuracion_CalificaLaApp_Descripcion">Take some time to rate my app in the Play Store</string>
+    <string name="configuracion_EnviarErrores">Send suggestions or bugs</string>
+    <string name="configuracion_EnviarErrores_Descripcion">Contact me if you have any suggestion to improve the app or if you have detected any bug</string>
+    <string name="configuracion_BorrarPedidos">Delete order list</string>
+    <string name="configuracion_BorrarPedidos_Descripcion">Delete the whole order list and start from the beggining</string>
+    <string name="SingleWord_Version">Version</string>
+    <string name="configuracion_AcercaDe">About</string>
+    <string name="configuracion_PoliticaDePrivacidad">Private policy</string>
+    <string name="configuracion_Idioma">Language</string>
+    <string name="configuracion_Idioma_Descripcion">Change the app default language</string>
+
+</resources>

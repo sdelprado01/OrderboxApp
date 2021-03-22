@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/addPedidos"
+        android:name="com.delpradosergio.orderbox.Fragments.AnadirPedido_Fragment"
+        android:label="fragment_add_pedidos"
+        tools:layout="@layout/fragment_anadir_pedido" >
+        <action
+            android:id="@+id/action_addPedidos_to_addArticulo"
+            app:destination="@id/addArticulo"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_addPedidos_to_checkPedido"
+            app:destination="@id/checkPedido"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+        <argument
+            android:name="NumPedido"
+            app:argType="long"
+            android:defaultValue="0L" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.delpradosergio.orderbox.Fragments.MenuPrincipal_Fragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_menu_principal" >
+        <action
+            android:id="@+id/action_mainFragment_to_addPedidos"
+            app:destination="@id/addPedidos"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_mainFragment_to_verPedidos"
+            app:destination="@id/verPedidos"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_mainFragment_to_opcionesFragment"
+            app:destination="@id/opcionesFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/verPedidos"
+        android:name="com.delpradosergio.orderbox.Fragments.VerPedidos_Fragment"
+        android:label="fragment_ver_pedidos"
+        tools:layout="@layout/fragment_ver_pedidos" >
+        <action
+            android:id="@+id/action_verPedidos_to_detailPedido"
+            app:destination="@id/detailPedido"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/addArticulo"
+        android:name="com.delpradosergio.orderbox.Fragments.AnadirArticulo_Fragment"
+        android:label="fragment_add_articulo"
+        tools:layout="@layout/fragment_anadir_articulo" >
+        <argument
+            android:name="posicion"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
+    <dialog
+        android:id="@+id/checkPedido"
+        android:name="com.delpradosergio.orderbox.Dialogs.ConfirmarAnadirPedido_Dialog"
+        android:label="fragment_check_pedido"
+        tools:layout="@layout/dialog_confirmar_anadir_pedido" >
+        <action
+            android:id="@+id/action_checkPedido_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:popUpTo="@id/mainFragment"
+            app:popUpToInclusive="true" />
+    </dialog>
+    <dialog
+        android:id="@+id/detailPedido"
+        android:name="com.delpradosergio.orderbox.Dialogs.DetallesDePedido_Dialog"
+        android:label="fragment_detail_pedido"
+        tools:layout="@layout/dialog_detalles_de_pedido">
+        <argument
+            android:name="NumPedido"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_detailPedido_to_addPedidos"
+            app:destination="@id/addPedidos"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_detailPedido_to_confirmarEliminarPedido"
+            app:destination="@id/confirmarEliminarPedido"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/verPedidos"
+            app:popUpToInclusive="false" />
+    </dialog>
+    <dialog
+        android:id="@+id/confirmarEliminarPedido"
+        android:name="com.delpradosergio.orderbox.Dialogs.ConfirmarBorrarPedido_Dialog"
+        android:label="fragment_confirmar_eliminar_pedido"
+        tools:layout="@layout/dialog_confirmar_borrar_pedido" >
+        <argument android:name="NumPedido"
+            app:argType="long" />
+    </dialog>
+    <dialog
+        android:id="@+id/confirmarBorrarTodosLosPedidos"
+        android:name="com.delpradosergio.orderbox.Dialogs.ConfirmarBorrarTodosLosPedidos_Dialog"
+        android:label="fragment_confirmar_borrar_todos_los_pedidos"
+        tools:layout="@layout/dialog_confirmar_borrar_todos_los_pedidos" />
+    <fragment
+        android:id="@+id/opcionesFragment"
+        android:name="com.delpradosergio.orderbox.Fragments.Configuracion_Fragment"
+        android:label="fragment_opciones"
+        tools:layout="@layout/fragment_configuracion" >
+        <action
+            android:id="@+id/action_opcionesFragment_to_confirmarBorrarTodosLosPedidos2"
+            app:destination="@id/confirmarBorrarTodosLosPedidos"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashScreen"
+        android:name="com.delpradosergio.orderbox.Fragments.SplashScreen"
+        android:label="fragment_splash_screen"
+        tools:layout="@layout/fragment_splash_screen" >
+        <action
+            android:id="@+id/action_splashScreen_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+</navigation>

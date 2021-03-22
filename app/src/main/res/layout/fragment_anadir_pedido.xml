@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.AnadirPedido_Fragment">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/editTextNombre"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/custom_input"
+        android:ems="10"
+        android:hint="@string/anadirPedido_NombreCliente"
+        android:inputType="textCapSentences"
+        android:padding="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPedidoAddPedido" />
+
+    <EditText
+        android:id="@+id/editTextTelefono"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/custom_input"
+        android:ems="10"
+        android:hint="@string/anadirPedido_NumeroDeTelefono"
+        android:inputType="number"
+        android:padding="10dp"
+        app:layout_constraintStart_toStartOf="@+id/editTextNombre"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNombre" />
+
+    <EditText
+        android:id="@+id/editTextFecha"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/custom_input"
+        android:clickable="true"
+        android:ems="10"
+        android:focusable="false"
+        android:hint="@string/anadirPedido_FechaDeRecogida"
+        android:inputType="date"
+        android:padding="10dp"
+        app:layout_constraintStart_toStartOf="@+id/editTextTelefono"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTelefono" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/textViewArticulosDelPedidoAddPedidos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:clickable="true"
+        android:text="@string/anadirPedido_AbrirListaArticulos"
+        android:textAllCaps="true"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/editTextFecha"
+        app:layout_constraintTop_toBottomOf="@+id/editTextFecha" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonAddPedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:paddingHorizontal="15dp"
+        android:text="@string/anadirPedido_CompletarPedido"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:enabled="true"
+        app:strokeWidth="1dp"
+        app:strokeColor="@color/colorPrimary"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewDescrpcionPedidos"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+
+        android:autofillHints="Articulos del pedido"
+        app:layout_constraintBottom_toTopOf="@+id/buttonAddPedido"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textViewArticulosDelPedidoAddPedidos"
+        app:layout_constraintTop_toBottomOf="@+id/textViewArticulosDelPedidoAddPedidos" />
+
+    <TextView
+        android:id="@+id/textViewPedidoAddPedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/SingleWord_addPedido"
+        android:textColor="@color/black"
+        android:textSize="34dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButtonRetrocederAddPedidos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:backgroundTint="@color/colorWhite"
+        android:src="@drawable/ic_arrow_back"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewPedidoAddPedido"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textViewPedidoAddPedido" />
+
+    <ImageButton
+        android:id="@+id/imageButtonAñadirArticulos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorWhite"
+        android:src="@drawable/ic_add"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewArticulosDelPedidoAddPedidos"
+        app:layout_constraintStart_toEndOf="@+id/textViewArticulosDelPedidoAddPedidos"
+        app:layout_constraintTop_toTopOf="@+id/textViewArticulosDelPedidoAddPedidos" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

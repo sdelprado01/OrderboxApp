@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.AnadirArticulo_Fragment">
+
+    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+        android:id="@+id/editTextNombreArticulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/custom_input"
+        android:ems="10"
+        android:singleLine="true"
+        android:hint="@string/anadirArticulo_NombreArticulo"
+        android:inputType="textCapSentences"
+        android:padding="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <EditText
+        android:id="@+id/editTextCantidad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/custom_input"
+        android:ems="10"
+        android:hint="@string/SingleWord_Quantity"
+        android:inputType="number"
+        android:padding="10dp"
+        app:layout_constraintStart_toStartOf="@+id/editTextNombreArticulo"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNombreArticulo" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="113dp"
+        android:layout_height="45dp"
+        android:entries="@array/tipo_cantidad_articulo"
+        android:background="@drawable/custom_input"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.528"
+        app:layout_constraintStart_toEndOf="@+id/editTextCantidad"
+        app:layout_constraintTop_toTopOf="@+id/editTextCantidad" />
+
+    <EditText
+        android:id="@+id/editTextDetalles"
+        android:layout_width="344dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/custom_input"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="@string/SingleWord_Details"
+        android:inputType="textMultiLine"
+        android:maxHeight="150dp"
+        android:padding="10dp"
+        app:layout_constraintStart_toStartOf="@+id/editTextCantidad"
+        app:layout_constraintTop_toBottomOf="@+id/editTextCantidad" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonCompletarArticulo"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="@string/anadirArticulo_CompletarLista"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:backgroundTint="@color/colorPrimary"
+        app:strokeColor="@color/colorPrimary"
+        app:strokeWidth="1dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/anadirArticulo_Titulo"
+        android:textColor="@android:color/black"
+        android:textSize="34dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButtonRetrocederAddArticulos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:backgroundTint="@color/colorWhite"
+        android:src="@drawable/ic_arrow_back"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recylcerViewDescripcionArticulosAddArticulos"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonCompletarArticulo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonAñadirArticuloEnAddArticulos" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonAñadirArticuloEnAddArticulos"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/SingleWord_Add"
+        app:layout_constraintEnd_toEndOf="@+id/editTextDetalles"
+        app:layout_constraintTop_toBottomOf="@+id/editTextDetalles"
+        app:strokeColor="@color/colorPrimary"
+        app:strokeWidth="1dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
