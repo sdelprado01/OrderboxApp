@@ -3,7 +3,8 @@
 
 /////////////////// ESPAÑOL ///////////////////////
 
-Proyecto de la aplicación Orderbox App para gestionar los pedidos de pequeños negocios
+Proyecto de la aplicación Orderbox App para gestionar los pedidos de pequeños negocios.
+
 Empecé este proyecto el verano de 2020 debido a una idea que me dió mi padre como carnicero, de esta manera el podría llevar los pedidos de sus clientes al alcance de su mano
 y dejar el cuaderno y el boli de lado.
 
@@ -20,7 +21,8 @@ Diseño de interfaz gráfica para tablets
 
 /////////////////// ENGLISH ///////////////////////
 
-Orderbox App is a project to manage small business orders
+Orderbox App is a project to manage small business orders.
+
 I started this project in the summer of 2020 due to an idea that my father gave me as a butcher he is, in this way he could take the orders of his clients at his fingertips 
 and put the notebook and pen aside.
 
